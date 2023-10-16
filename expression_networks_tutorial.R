@@ -269,7 +269,6 @@ library(lionessR)
 
 ## read in synthego data
 meta=read.table("Z:/Projects/Project Management/Synthego/Data/pilot 20 targets - runs1-2/metadata.txt", sep="\t", header=T, row.names=NULL)
-meta$TargetGene[which(meta$TargetGene=="Trac")]="TRAC"
 counts=read.table("Z:/Projects/Project Management/Synthego/Data/pilot 20 targets - runs1-2/counts.txt", sep="\t", header=T, row.names = 1)
 
 ## normalize counts
