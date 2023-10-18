@@ -2,6 +2,8 @@
 #### Sample-level network analysis with Synthego KOs                         ###
 #### 10.16.2023                                                              ###
 ####                                                                         ###
+#### 1. run lionessR for one single replicate of one KO                      ###
+#### 2. loop lionessR to use all 6 replicates of all 20 KOs                  ###
 ################################################################################
 
 ## review lit
@@ -20,10 +22,9 @@ library(DESeq2)
 
 
 
-#######################################################
-## run lionessR for one single replicate of one KO ####
-#######################################################
-
+##########################################################
+## 1. run lionessR for one single replicate of one KO ####
+###########################################################
 
 ## read in synthego data
 meta=read.table("Z:/Projects/Project Management/Synthego/Data/pilot 20 targets - runs1-2/metadata.txt", sep="\t", header=T, row.names=NULL)
@@ -210,9 +211,9 @@ gc()
 
 
 
-##########################################################
-## loop lionessR to use all 6 replicates of all 20 KO ####
-##########################################################
+#############################################################
+## 2. loop lionessR to use all 6 replicates of all 20 KO ####
+##############################################################
 
 ## read in synthego data
 meta=read.table("Z:/Projects/Project Management/Synthego/Data/pilot 20 targets - runs1-2/metadata.txt", sep="\t", header=T, row.names=NULL)
