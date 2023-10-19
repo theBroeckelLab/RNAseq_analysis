@@ -78,16 +78,16 @@ dim(counts)
 #########################################
 ##**## when we cluster expression data (PCAs, dendrograms, heatmaps) we usually want to first normalize our raw counts.  Normalizing the data beforehand helps reduce the impact of technical factors, outlier samples, and  very highly expressed genes. there are a few different ways to normalize raw read counts, here we'll use a  variance stabilizing transformation from the DESeq package. we'll use DESeq again to run differential expression analysis later in the script ##**##
 
-## install DESeq2http://127.0.0.1:16847/graphics/plot_zoom_png?width=717&height=900
+## install DESeq2
 install.packages("DESeq2")
 library(DESeq2)
 
-## normalize counts
+## normalize counts with vst (similar to a log transformation of the data)
 counts.normalized=varianceStabilizingTransformation(as.matrix(counts))
 
 ## take a look at the first 5 genes for the first 3 samples. counts are now normalized, not raw
-counts[1:5,1:3]
-counts.normalized[1:5,1:3]
+counts[1:5,1:3]              ##raw counts
+counts.normalized[1:5,1:3]   ##normalized counts 
 
 
 
@@ -109,7 +109,7 @@ expression.variabality_dataframe[index.most_var_gene,]
 plot(counts.normalized[which(rownames(counts.normalized)=="BMP10"),], xaxt="n", xlab="", ylab="BMP10 Normalized Expression", ylim=c(3,17))
 axis(1, at=1:nrow(metadata), labels=metadata$Sample.ID, las=2)
 
-## UNC50 is the most variable gene, meaning it's expression changes dramatically sample-to-sample
+## UNC50 is the least variable gene, meaning it's expression rarely changes sample-to-sample
 index.least_var_gene=which.min(expression.variabality_dataframe$expression.variabality)
 expression.variabality_dataframe[index.least_var_gene,]
 plot(counts.normalized[which(rownames(counts.normalized)=="UNC50"),], xaxt="n", xlab="", ylab="UNC50 Normalized Expression", ylim=c(3,17))
