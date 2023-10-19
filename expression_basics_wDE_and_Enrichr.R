@@ -256,9 +256,9 @@ de1.resultsTable[head(order(de1.resultsTable$log2FoldChange), 5),]  ##genes decr
 ## how many total genes are significantly differentially expressed?
 length(which(de1.resultsTable$padj<0.05))  #12,301 DE genes
 
-## 12,301 genes is alot, too many for pathway enrichment. We'll take the top 250 most significantly DE genes for downstream analysis
-sig_DEgenes=rownames(de1.resultsTable)[head(order(de1.resultsTable$padj, decreasing=F), 250)]
-
+## 12,301 genes is alot, too many for pathway enrichment. There are a few ways to get fewer genes
+sig_DEgenes=rownames(de1.resultsTable)[head(order(de1.resultsTable$padj, decreasing=F), 250)]                      #filter for the 250 most significant
+sig_DEgenes=rownames(de1.resultsTable)[which(de1.resultsTable$padj<=0.05&abs(de1.resultsTable$log2FoldChange)>2)]  #filter for those with > 2 or < -2 fold change
 
 
 
